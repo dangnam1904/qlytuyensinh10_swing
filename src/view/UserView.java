@@ -1,11 +1,19 @@
 package view;
 
 import java.awt.EventQueue;
+import java.util.List;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
-import javax.swing.*;
+
+import controller.UserController;
+import dao.UserDAO;
+import model.User;
 
 public class UserView extends JFrame {
 
@@ -15,6 +23,7 @@ public class UserView extends JFrame {
 	private JTextField textField;
 	private JLabel lblMtKhu;
 	private JButton btn_login;
+	private List<User> listUser;
 	/**
 	 * Launch the application.
 	 */
@@ -43,7 +52,7 @@ public class UserView extends JFrame {
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
+		UserController controller= new UserController(this);
 		JLabel lblNewLabel = new JLabel("Tên đăng nhập");
 		lblNewLabel.setBounds(55, 30, 79, 14);
 		contentPane.add(lblNewLabel);
@@ -51,7 +60,7 @@ public class UserView extends JFrame {
 		txt_username = new JTextField();
 		txt_username.setBounds(156, 27, 138, 20);
 		contentPane.add(txt_username);
-		textField.setColumns(10);
+		txt_username.setColumns(10);
 		
 		txt_password = new JTextField();
 		txt_password.setBounds(156, 77, 138, 20);
@@ -62,8 +71,21 @@ public class UserView extends JFrame {
 		contentPane.add(lblMtKhu);
 		
 		btn_login = new JButton("Đăng nhập");
+		btn_login.addActionListener(controller);
 		btn_login.setBounds(156, 133, 89, 23);
 		contentPane.add(btn_login);
-		textField.setColumns(10);
+		this.setVisible(true);
+	}
+
+	public void login() {
+		String a="";
+		if(UserDAO.login(txt_username.getText().trim(), txt_password.getText().trim())) {
+			JOptionPane.showMessageDialog(null, "Đăng nhập thành công" , "Thông báo",1);
+			this.setVisible(false);
+			TruongC2View f= new TruongC2View();
+		}else {
+			JOptionPane.showMessageDialog(null, "Tên Tài khoan hoặc mật khẩu không chính xác" , "Thông báo",1);
+		}
+		
 	}
 }
