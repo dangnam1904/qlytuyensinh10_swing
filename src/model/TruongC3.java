@@ -6,6 +6,12 @@ public class TruongC3 {
 	private String maTruongC3,tenTruongC3, ghiChu, maQuan, diachiTruongC3;
 	private int chiTieu;
 	private float diemChuan;
+	
+	public TruongC3(String maTruongC3, String tenTruongC3) {
+		super();
+		this.maTruongC3 = maTruongC3;
+		this.tenTruongC3 = tenTruongC3;
+	}
 	public String getMaTruongC3() {
 		return maTruongC3;
 	}
@@ -49,13 +55,11 @@ public class TruongC3 {
 		this.diemChuan = diemChuan;
 	}
 	public TruongC3() {
-		super();
+		
 	}
 	@Override
 	public String toString() {
-		return "TruongC3 [maTruongC3=" + maTruongC3 + ", tenTruongC3=" + tenTruongC3 + ", ghiChu=" + ghiChu
-				+ ", maQuan=" + maQuan + ", diachiTruongC3=" + diachiTruongC3 + ", chiTieu=" + chiTieu + ", diemChuan="
-				+ diemChuan + "]";
+		return  tenTruongC3;
 	}
 	@Override
 	public int hashCode() {

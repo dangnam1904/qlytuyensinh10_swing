@@ -24,25 +24,21 @@ public class HocSinhController  implements Action {
 				modeNew= true;
 			}else if(cm.equals("Lưu")) {
 				if(modeNew) {
-					this.view.insertDataTruongC2();
-					
-				}else {
-					
-					this.view.editTruongC2();
+					this.view.insertDataHocSinh();
 				}
-				
+				else {
+					this.view.editHocSinh();
+				}
 				this.view.setControl(false);
 			
 			}
 			else if(cm.equals("Xóa")) {
-				this.view.deleteDataTruongC2();
-				this.view.setControl(false);
+				this.view.deleteDataAHocSinh();
 			}
 			else if(cm.equals("Sửa")) {
 				
 				this.view.setControl(true);
 				this.view.enableTextMa(false);
-				
 				modeNew= false;
 			}
 		

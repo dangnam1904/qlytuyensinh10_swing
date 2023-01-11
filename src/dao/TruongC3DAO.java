@@ -2,6 +2,8 @@ package dao;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JOptionPane;
 
@@ -82,6 +84,21 @@ public class TruongC3DAO {
 	            return false;
 	        }
 	    }
-	   	
+
+
+	public static List<TruongC3> getDataTruongC3Cbox(String sql) {
+		List<TruongC3> itemC3s = new ArrayList<>();
+        try {
+            ps = ConnectDB.getConnect().prepareStatement(sql);
+            ResultSet r= ps.executeQuery();
+           while(r.next()) {
+        	  itemC3s.add( new TruongC3(r.getString(1), r.getString(2)));
+        			 
+           }
+        } catch (Exception e) {
+           
+        }
+        return itemC3s;
+    } 	
 
 }

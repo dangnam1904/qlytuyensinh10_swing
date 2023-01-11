@@ -2,7 +2,8 @@ package dao;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JOptionPane;
 
@@ -13,6 +14,7 @@ public class TruongC2DAO {
 	
 	 public static PreparedStatement ps;
 	 public static ResultSet rs;
+	 public static List<TruongC2> listTrc2;
 	 
 	 public static ResultSet getDataTruongC2(String sql) {
 	        try {
@@ -21,6 +23,39 @@ public class TruongC2DAO {
 	        } catch (Exception e) {
 	            return null;
 	        }
+	    }
+	 
+	 public static TruongC2[] getDataAllTruongC2(String sql) {
+		 
+		 TruongC2[] itemC2s =null;
+	        try {
+	            ps = ConnectDB.getConnect().prepareStatement(sql);
+	            ResultSet r= ps.executeQuery();
+	           while(r.next()) {
+	        	  itemC2s= new TruongC2[]  {
+	        			  new TruongC2(r.getString(1), r.getString(2))
+	        			 };
+	           }
+	        } catch (Exception e) {
+	           
+	        }
+	        return itemC2s;
+	    }
+	 
+ public static List<TruongC2> getDataTruongC2Cbox(String sql) {
+		 
+	 List<TruongC2> itemC2s = new ArrayList<>();
+	        try {
+	            ps = ConnectDB.getConnect().prepareStatement(sql);
+	            ResultSet r= ps.executeQuery();
+	           while(r.next()) {
+	        	  itemC2s.add( new TruongC2(r.getString(1), r.getString(2)));
+	        			 
+	           }
+	        } catch (Exception e) {
+	           
+	        }
+	        return itemC2s;
 	    }
 	 
 	 public static TruongC2 getATruongC2(String ma) {

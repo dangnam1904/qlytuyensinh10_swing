@@ -49,10 +49,17 @@ public class TruongC2 {
 		
 	}
 
+	
+
+	public TruongC2(String maTruongC2, String tenTruongC2) {
+		
+		this.maTruongC2 = maTruongC2;
+		this.tenTruongC2 = tenTruongC2;
+	}
+
 	@Override
 	public String toString() {
-		return "TruongC2 [maTruongC2=" + maTruongC2 + ", tenTruongC2=" + tenTruongC2 + ", diachiTruongC2="
-				+ diachiTruongC2 + ", ghiChu=" + ghiChu + "]";
+		return tenTruongC2;
 	}
 
 	@Override
