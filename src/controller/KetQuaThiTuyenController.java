@@ -5,13 +5,13 @@ import java.beans.PropertyChangeListener;
 
 import javax.swing.Action;
 
-import view.TruongC2View;
+import view.KetQuaThiTuyenView;
 
-public class TruongC2Controller implements Action {
-	private TruongC2View view;
+public class KetQuaThiTuyenController implements Action {
+	private KetQuaThiTuyenView view;
 	private boolean modeNew;
 
-	public TruongC2Controller(TruongC2View v) {
+	public KetQuaThiTuyenController(KetQuaThiTuyenView v) {
 		this.view = v;
 	}
 
@@ -25,17 +25,20 @@ public class TruongC2Controller implements Action {
 			modeNew = true;
 		} else if (cm.equals("Lưu")) {
 			if (modeNew) {
-				this.view.insertDataTruongC2();
+				this.view.insertKQTT();
 
 			} else {
 
-				this.view.editTruongC2();
+				this.view.editKQTT();
 			}
 
 			this.view.setControl(false);
 
+		} else if (cm.equals("Danh sách Trúng Tuyển")) {
+			this.view.loadDSTrungTuyen();
+
 		} else if (cm.equals("Xóa")) {
-			this.view.deleteDataTruongC2();
+			this.view.deleteDataKQTT();
 			this.view.setControl(false);
 		} else if (cm.equals("Sửa")) {
 
@@ -81,5 +84,4 @@ public class TruongC2Controller implements Action {
 		// TODO Auto-generated method stub
 
 	}
-
 }

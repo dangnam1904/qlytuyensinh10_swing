@@ -2,9 +2,9 @@ package model;
 
 import java.util.Objects;
 
-public class KetQuaThiTuyen extends HocSinh{
+public class KetQuaThiTuyen extends HocSinh {
 
-	private float diemToan,diemVan,diemAnh,diemMonTC,tongDiemThi;
+	private float diemToan, diemVan, diemAnh, diemMonTC, tongDiemThi;
 
 	public KetQuaThiTuyen(String maHS, String sBD, float diemToan, float diemVan, float diemAnh, float diemMonTC,
 			float tongDiemThi) {
@@ -47,13 +47,13 @@ public class KetQuaThiTuyen extends HocSinh{
 	public void setDiemMonTC(float diemMonTC) {
 		this.diemMonTC = diemMonTC;
 	}
-	
+
 	public float getTongDiemThi() {
-		return diemToan+diemAnh+diemVan+diemMonTC;
+		return diemToan + diemAnh + diemVan + diemMonTC;
 	}
 
 	public void setTongDiemThi() {
-		this.tongDiemThi = this.diemToan+this.diemAnh+this.diemVan+this.diemMonTC;
+		this.tongDiemThi = this.diemToan + this.diemAnh + this.diemVan + this.diemMonTC;
 	}
 
 	public KetQuaThiTuyen(String maHS, String sBD, float diemToan, float diemVan, float diemAnh, float diemMonTC) {
@@ -67,10 +67,7 @@ public class KetQuaThiTuyen extends HocSinh{
 	public KetQuaThiTuyen(String maHS, String sBD) {
 		super(maHS, sBD);
 	}
-	
-	
 
-	
 	@Override
 	public String toString() {
 		return "KetQuaThiTuyen [diemToan=" + diemToan + ", diemVan=" + diemVan + ", diemAnh=" + diemAnh + ", diemMonTC="
@@ -78,7 +75,7 @@ public class KetQuaThiTuyen extends HocSinh{
 	}
 
 	public KetQuaThiTuyen() {
-		
+
 	}
 
 	@Override
@@ -105,7 +102,7 @@ public class KetQuaThiTuyen extends HocSinh{
 	}
 
 	public static void main(String[] args) {
-		KetQuaThiTuyen quaThiTuyen= new KetQuaThiTuyen();
+		KetQuaThiTuyen quaThiTuyen = new KetQuaThiTuyen();
 		quaThiTuyen.setMaHS("1");
 		quaThiTuyen.setsBD("1");
 		quaThiTuyen.setDiemAnh(6);
@@ -113,9 +110,8 @@ public class KetQuaThiTuyen extends HocSinh{
 		quaThiTuyen.setDiemMonTC(7);
 		quaThiTuyen.setDiemMonTC(6);
 		quaThiTuyen.setTongDiemThi();
-		
+
 		System.out.println(quaThiTuyen.toString());
 	}
-	
-	
+
 }

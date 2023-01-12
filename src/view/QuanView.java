@@ -3,36 +3,45 @@ package view;
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.SystemColor;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import javax.swing.*;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
+import controller.QuanController;
 import controller.TruongC2Controller;
+import dao.QuanDAO;
 import dao.TruongC2DAO;
+import model.Quan;
 import model.TruongC2;
-import java.awt.SystemColor;
 
-public class TruongC2View extends JFrame {
+public class QuanView extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField txt_matruongc2;
-	private JTextField txt_tentruongc2;
-	private JTextField txt_diachitruongc2;
-	private JTextField txt_ghichu;
+	private JTextField txt_maQuan;
+	private JTextField txt_tenQuan;
+	private JTextField txt_khuvuc;
 	private JTable table;
 	private DefaultTableModel tablemodel = new DefaultTableModel();
 	private JButton btn_add, btn_delete, btn_edit, btn_save;
 	private Font f = new Font("Tahoma", Font.PLAIN, 13);
 	private String maTruong = "";
-	private String tenTruong = "";
+	private String tenQuan = "";
 
-	public TruongC2View() {
-		setTitle("Quản lý trường cấp 2");
+	public QuanView() {
+		setTitle("Quản lý Quận");
 		setBackground(new Color(0, 64, 0));
 		setForeground(new Color(0, 23, 255));
 		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
@@ -43,53 +52,43 @@ public class TruongC2View extends JFrame {
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		TruongC2Controller controller = new TruongC2Controller(this);
-		JLabel lblNewLabel = new JLabel("Mã trường");
+		QuanController controller = new QuanController(this);
+		JLabel lblNewLabel = new JLabel("Mã Quận");
 		lblNewLabel.setBounds(25, 29, 74, 14);
 		contentPane.add(lblNewLabel);
 
-		JLabel lblNewLabel_1 = new JLabel("Tên Trường");
+		JLabel lblNewLabel_1 = new JLabel("Tên Quận");
 		lblNewLabel_1.setBounds(25, 69, 63, 14);
 		contentPane.add(lblNewLabel_1);
 
-		txt_matruongc2 = new JTextField();
-		txt_matruongc2.setBounds(109, 26, 86, 20);
-		contentPane.add(txt_matruongc2);
-		txt_matruongc2.setColumns(10);
+		txt_maQuan = new JTextField();
+		txt_maQuan.setBounds(109, 26, 86, 20);
+		contentPane.add(txt_maQuan);
+		txt_maQuan.setColumns(10);
 
-		txt_tentruongc2 = new JTextField();
-		txt_tentruongc2.setColumns(10);
-		txt_tentruongc2.setBounds(109, 66, 213, 20);
-		contentPane.add(txt_tentruongc2);
+		txt_tenQuan = new JTextField();
+		txt_tenQuan.setColumns(10);
+		txt_tenQuan.setBounds(109, 66, 213, 20);
+		contentPane.add(txt_tenQuan);
 
 		JLabel lblNewLabel_2 = new JLabel("Địa chỉ");
 		lblNewLabel_2.setBounds(374, 32, 46, 14);
 		contentPane.add(lblNewLabel_2);
 
-		txt_diachitruongc2 = new JTextField();
-		txt_diachitruongc2.setColumns(10);
-		txt_diachitruongc2.setBounds(441, 29, 239, 20);
-		contentPane.add(txt_diachitruongc2);
+		txt_khuvuc = new JTextField();
+		txt_khuvuc.setColumns(10);
+		txt_khuvuc.setBounds(441, 29, 239, 20);
+		contentPane.add(txt_khuvuc);
 
-		txt_ghichu = new JTextField();
-		txt_ghichu.setColumns(10);
-		txt_ghichu.setBounds(441, 66, 239, 20);
-		contentPane.add(txt_ghichu);
-
-		JLabel lblNewLabel_3 = new JLabel("Ghi chú");
-		lblNewLabel_3.setBounds(374, 69, 46, 14);
-		contentPane.add(lblNewLabel_3);
-
-		String[] colsName = { "Mã trường", "Tên Trường", "Địa Chi", "Ghi chú" };
+		String[] colsName = { "Mã Quận", "Tên Quận", "Khu vực" };
 		tablemodel.setColumnIdentifiers(colsName);
-		ResultSet rs = TruongC2DAO.getDataTruongC2("select * from truongc2");
+		ResultSet rs = QuanDAO.getDataQuan("select * from quan");
 		try {
 			while (rs.next()) {
-				String rows[] = new String[4];
+				String rows[] = new String[3];
 				rows[0] = rs.getString(1); // lấy dữ liệu tại cột số 1 (ứng với mã hàng)
 				rows[1] = rs.getString(2); // lấy dữ liệu tai cột số 2 ứng với tên hàng
 				rows[2] = rs.getString(3);
-				rows[3] = rs.getString(4);
 				tablemodel.addRow(rows);
 			}
 		} catch (SQLException e) {
@@ -141,35 +140,32 @@ public class TruongC2View extends JFrame {
 				tablemodel = (DefaultTableModel) table.getModel();
 				int i_row = table.getSelectedRow();
 				maTruong = tablemodel.getValueAt(i_row, 0) + "";
-				tenTruong = tablemodel.getValueAt(i_row, 1) + "";
-				txt_matruongc2.setText(tablemodel.getValueAt(i_row, 0) + "");
-				txt_tentruongc2.setText(tablemodel.getValueAt(i_row, 1) + "");
-				txt_diachitruongc2.setText(tablemodel.getValueAt(i_row, 2) + "");
-				txt_ghichu.setText(tablemodel.getValueAt(i_row, 3) + "");
+				tenQuan = tablemodel.getValueAt(i_row, 1) + "";
+				txt_maQuan.setText(tablemodel.getValueAt(i_row, 0) + "");
+				txt_tenQuan.setText(tablemodel.getValueAt(i_row, 1) + "");
+				txt_khuvuc.setText(tablemodel.getValueAt(i_row, 2) + "");
+
 			}
 		});
 	}
 
 	public void xoaForm() {
-		txt_matruongc2.setText("");
-		txt_tentruongc2.setText("");
-		txt_diachitruongc2.setText("");
-		txt_ghichu.setText("");
-
+		txt_maQuan.setText("");
+		txt_tenQuan.setText("");
+		txt_khuvuc.setText("");
 	}
 
-	public void insertDataTruongC2() {
-		String ma = txt_matruongc2.getText().trim();
+	public void insertDataQuan() {
+		String ma = txt_maQuan.getText().trim();
 
-		if (ma.equals("") || txt_tentruongc2.getText().trim().equals("")) {
+		if (ma.equals("") || txt_tenQuan.getText().trim().equals("")) {
 
-			JOptionPane.showMessageDialog(null, "Chưa nhập mã trường và tên trường", "Thông báo", 1);
+			JOptionPane.showMessageDialog(null, "Chưa nhập mã Quận", "Thông báo", 1);
 			return;
 		} else {
-			if (TruongC2DAO.getATruongC2(txt_matruongc2.getText().trim()) == null) {
-				TruongC2DAO.insertDataTruongC2(
-						new TruongC2(txt_matruongc2.getText().trim(), txt_tentruongc2.getText().trim(),
-								txt_diachitruongc2.getText().trim(), txt_ghichu.getText().trim()));
+			if (QuanDAO.getAQuan(txt_maQuan.getText().trim()) == null) {
+				QuanDAO.insertDataQuan(new Quan(txt_maQuan.getText().trim(), txt_tenQuan.getText().trim(),
+						txt_khuvuc.getText().trim()));
 				readData();
 			} else {
 				JOptionPane.showMessageDialog(null, "Mã trường này đã tồn tại!", "Thông báo", 1);
@@ -180,16 +176,15 @@ public class TruongC2View extends JFrame {
 
 	public void readData() {
 		tablemodel = new DefaultTableModel();
-		String[] colsName = { "Mã trường", "Tên Trường", "Địa Chi", "Ghi chú" };
+		String[] colsName = { "Mã Quận", "Tên Quận", "Khu vực" };
 		tablemodel.setColumnIdentifiers(colsName);
-		ResultSet rs = TruongC2DAO.getDataTruongC2("select * from truongc2");
+		ResultSet rs = QuanDAO.getDataQuan("select * from quan");
 		try {
 			while (rs.next()) {
-				String rows[] = new String[4];
+				String rows[] = new String[3];
 				rows[0] = rs.getString(1); // lấy dữ liệu tại cột số 1 (ứng với mã hàng)
 				rows[1] = rs.getString(2); // lấy dữ liệu tai cột số 2 ứng với tên hàng
 				rows[2] = rs.getString(3);
-				rows[3] = rs.getString(4);
 				tablemodel.addRow(rows);
 			}
 		} catch (SQLException e) {
@@ -200,14 +195,18 @@ public class TruongC2View extends JFrame {
 
 	}
 
-	public void deleteDataTruongC2() {
+	public void deleteDataQuan() {
 		if (maTruong == "") {
 			JOptionPane.showMessageDialog(null, "Bạn chưa chọn trường cần xóa!", "Thông báo", 1);
 		} else {
-			int result = JOptionPane.showConfirmDialog(null, "Bạn thực sự muốn xóa trường " + tenTruong + " này");
+			int result = JOptionPane.showConfirmDialog(null, "Bạn thực sự muốn xóa  " + tenQuan + " này");
 			if (result == 0) {
-				TruongC2DAO.deleteTruongC2(maTruong);
-				JOptionPane.showMessageDialog(null, "Xóa thành công!", "Thông báo", 1);
+				if (QuanDAO.deleteQuan(maTruong)) {
+					JOptionPane.showMessageDialog(null, "Xóa thành công!", "Thông báo", 1);
+				} else {
+					JOptionPane.showMessageDialog(null, "Xóa thất bại!", "Thông báo", 1);
+				}
+
 				readData();
 			} else {
 				return;
@@ -215,22 +214,26 @@ public class TruongC2View extends JFrame {
 		}
 	}
 
-	public void editTruongC2() {
+	public void editQuan() {
 		if (maTruong == "") {
 			JOptionPane.showMessageDialog(null, "Bạn chưa chọn trường cần xóa!", "Thông báo", 1);
 		} else {
-			TruongC2DAO.UpdateTruongC2(new TruongC2(maTruong, txt_tentruongc2.getText().trim(),
-					txt_diachitruongc2.getText().trim(), txt_ghichu.getText().trim()));
+
+			if (QuanDAO.UpdateQuan(
+					new Quan(txt_maQuan.getText().trim(), txt_tenQuan.getText().trim(), txt_khuvuc.getText().trim()))) {
+				JOptionPane.showMessageDialog(null, "Sửa thành công!", "Thông báo", 1);
+			} else {
+				JOptionPane.showMessageDialog(null, "Sửa thất bại!", "Thông báo", 1);
+			}
 			readData();
 		}
 
 	}
 
 	public void setControl(boolean b) {
-		txt_matruongc2.setEnabled(b);
-		txt_tentruongc2.setEnabled(b);
-		txt_diachitruongc2.setEnabled(b);
-		txt_ghichu.setEnabled(b);
+		txt_maQuan.setEnabled(b);
+		txt_tenQuan.setEnabled(b);
+		txt_khuvuc.setEnabled(b);
 
 		btn_add.setEnabled(!b);
 		btn_edit.setEnabled(!b);
@@ -241,7 +244,6 @@ public class TruongC2View extends JFrame {
 
 	public void enableTextMa(boolean b) {
 
-		txt_matruongc2.setEnabled(b);
+		txt_maQuan.setEnabled(b);
 	}
-
 }

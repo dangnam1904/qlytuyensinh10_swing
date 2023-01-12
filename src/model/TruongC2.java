@@ -3,7 +3,7 @@ package model;
 import java.util.Objects;
 
 public class TruongC2 {
-	private  String maTruongC2, tenTruongC2, diachiTruongC2, ghiChu;
+	private String maTruongC2, tenTruongC2, diachiTruongC2, ghiChu;
 
 	public String getMaTruongC2() {
 		return maTruongC2;
@@ -46,13 +46,11 @@ public class TruongC2 {
 	}
 
 	public TruongC2() {
-		
+
 	}
 
-	
-
 	public TruongC2(String maTruongC2, String tenTruongC2) {
-		
+
 		this.maTruongC2 = maTruongC2;
 		this.tenTruongC2 = tenTruongC2;
 	}
@@ -78,7 +76,5 @@ public class TruongC2 {
 		TruongC2 other = (TruongC2) obj;
 		return Objects.equals(maTruongC2, other.maTruongC2);
 	}
-	
-	
 
 }

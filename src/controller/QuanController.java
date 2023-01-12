@@ -5,13 +5,13 @@ import java.beans.PropertyChangeListener;
 
 import javax.swing.Action;
 
-import view.TruongC2View;
+import view.QuanView;
 
-public class TruongC2Controller implements Action {
-	private TruongC2View view;
-	private boolean modeNew;
+public class QuanController implements Action {
+	private QuanView view;
+	private Boolean modeNew;
 
-	public TruongC2Controller(TruongC2View v) {
+	public QuanController(QuanView v) {
 		this.view = v;
 	}
 
@@ -25,17 +25,14 @@ public class TruongC2Controller implements Action {
 			modeNew = true;
 		} else if (cm.equals("Lưu")) {
 			if (modeNew) {
-				this.view.insertDataTruongC2();
-
+				this.view.insertDataQuan();
 			} else {
-
-				this.view.editTruongC2();
+				this.view.editQuan();
 			}
-
 			this.view.setControl(false);
 
 		} else if (cm.equals("Xóa")) {
-			this.view.deleteDataTruongC2();
+			this.view.deleteDataQuan();
 			this.view.setControl(false);
 		} else if (cm.equals("Sửa")) {
 
@@ -44,6 +41,7 @@ public class TruongC2Controller implements Action {
 
 			modeNew = false;
 		}
+
 	}
 
 	@Override

@@ -3,7 +3,7 @@ package model;
 import java.util.Objects;
 
 public class Quan {
-	private String maQuan, tenQuan,khuVuc;
+	private String maQuan, tenQuan, khuVuc;
 
 	public String getMaQuan() {
 		return maQuan;
@@ -31,18 +31,24 @@ public class Quan {
 
 	@Override
 	public String toString() {
-		return  tenQuan;
+		return tenQuan;
+	}
+
+	public Quan(String maQuan, String tenQuan) {
+		super();
+		this.maQuan = maQuan;
+		this.tenQuan = tenQuan;
 	}
 
 	public Quan(String maQuan, String tenQuan, String khuVuc) {
-		
+
 		this.maQuan = maQuan;
 		this.tenQuan = tenQuan;
 		this.khuVuc = khuVuc;
 	}
 
 	public Quan() {
-		
+
 	}
 
 	@Override
@@ -61,6 +67,5 @@ public class Quan {
 		Quan other = (Quan) obj;
 		return Objects.equals(maQuan, other.maQuan) && Objects.equals(tenQuan, other.tenQuan);
 	}
-	
 
 }

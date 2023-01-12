@@ -10,16 +10,18 @@ import view.UserView;
 public class UserController implements Action {
 
 	private UserView view;
+
 	public UserController(UserView v) {
-		this.view= v;
+		this.view = v;
 	}
+
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		String cm = e.getActionCommand();
-		if(cm.equals("Đăng nhập")) {
+		if (cm.equals("Đăng nhập")) {
 			this.view.login();
 		}
-		
+
 	}
 
 	@Override
@@ -31,13 +33,13 @@ public class UserController implements Action {
 	@Override
 	public void putValue(String key, Object value) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void setEnabled(boolean b) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -49,12 +51,12 @@ public class UserController implements Action {
 	@Override
 	public void addPropertyChangeListener(PropertyChangeListener listener) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void removePropertyChangeListener(PropertyChangeListener listener) {
 		// TODO Auto-generated method stub
-		
+
 	}
 }

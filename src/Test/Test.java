@@ -2,17 +2,16 @@ package Test;
 
 import javax.swing.UIManager;
 
-
-import view.TruongC2View;
+import view.UserView;
 
 public class Test {
 	public static void main(String[] args) {
 		try {
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-			new TruongC2View();
+			new UserView().setLocationRelativeTo(null);
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 }
-

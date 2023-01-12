@@ -5,44 +5,34 @@ import java.beans.PropertyChangeListener;
 
 import javax.swing.Action;
 
-import view.TruongC2View;
+import view.Mainview;
 
-public class TruongC2Controller implements Action {
-	private TruongC2View view;
-	private boolean modeNew;
+public class MainController implements Action {
 
-	public TruongC2Controller(TruongC2View v) {
-		this.view = v;
+	private Mainview Mainview;
+
+	public MainController(Mainview v) {
+		this.Mainview = v;
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+
 		String cm = e.getActionCommand();
-		// JOptionPane.showMessageDialog(view, "Bạn vừa nhấn vào: "+cm);
-		if (cm.equals("Thêm")) {
-			this.view.xoaForm();
-			this.view.setControl(true);
-			modeNew = true;
-		} else if (cm.equals("Lưu")) {
-			if (modeNew) {
-				this.view.insertDataTruongC2();
 
-			} else {
+		if (cm.equals("Quản lý học sinh")) {
+			this.Mainview.loadFormSV();
 
-				this.view.editTruongC2();
-			}
+		} else if (cm.equals("Quản Trường Cấp 3")) {
+			this.Mainview.loadFormQLC3();
 
-			this.view.setControl(false);
+		} else if (cm.equals("Quản lý Trường Cấp 2")) {
+			this.Mainview.loadFormQLC2();
 
-		} else if (cm.equals("Xóa")) {
-			this.view.deleteDataTruongC2();
-			this.view.setControl(false);
-		} else if (cm.equals("Sửa")) {
-
-			this.view.setControl(true);
-			this.view.enableTextMa(false);
-
-			modeNew = false;
+		} else if (cm.equals("Quản lý Quận")) {
+			this.Mainview.loadFormQLQuan();
+		} else if (cm.equals("Quản lý thi cử")) {
+			this.Mainview.loadFormQLThicu();
 		}
 	}
 

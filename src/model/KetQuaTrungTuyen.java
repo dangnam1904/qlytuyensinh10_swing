@@ -1,39 +1,59 @@
 package model;
 
-public class KetQuaTrungTuyen {
+public class KetQuaTrungTuyen extends KetQuaThiTuyen {
 
-	private String maHS, ghiChu;
-	private float diiemXT;
+	private String maHS, tinhtrangDau;
+	private float diemXT;
+
 	public String getMaHS() {
 		return maHS;
 	}
+
 	public void setMaHS(String maHS) {
 		this.maHS = maHS;
 	}
-	public String getGhiChu() {
-		return ghiChu;
+
+	public void setDiemXT(float diemXT) {
+		this.diemXT = diemXT;
 	}
-	public void setGhiChu(String ghiChu) {
-		this.ghiChu = ghiChu;
+
+	public KetQuaTrungTuyen() {
+
 	}
-	public float getDiiemXT() {
-		return diiemXT;
+
+	public KetQuaTrungTuyen(String maHS, String sBD, String maHS2, String tinhtrangDau, float diemXT) {
+		super(maHS, sBD);
+		maHS = maHS2;
+		this.tinhtrangDau = tinhtrangDau;
+		this.diemXT = diemXT;
 	}
-	public void setDiiemXT(float diiemXT) {
-		this.diiemXT = diiemXT;
-	}
-	public KetQuaTrungTuyen(String maHS, String ghiChu, float diiemXT) {
-		
+
+	public KetQuaTrungTuyen(String maHS, String tinhtrangDau, float diemXT) {
+
 		this.maHS = maHS;
-		this.ghiChu = ghiChu;
-		this.diiemXT = diiemXT;
+		this.tinhtrangDau = tinhtrangDau;
+		this.diemXT = diemXT;
 	}
+
+	public String getTinhtrangDau() {
+		return tinhtrangDau;
+	}
+
+	public void setTinhtrangDau(String tinhtrangDau) {
+		this.tinhtrangDau = tinhtrangDau;
+	}
+
+	public float getDiemXT() {
+		return diemXT;
+	}
+
+	public void setDiemXT() {
+		this.diemXT = this.getDiemCong() + this.getTongDiemThi();
+	}
+
 	@Override
 	public String toString() {
-		return "KetQuaTrungTuyen [maHS=" + maHS + ", ghiChu=" + ghiChu + ", diiemXT=" + diiemXT + "]";
+		return "KetQuaTrungTuyen [maHS=" + maHS + ", tinhtrangDau=" + tinhtrangDau + ", diemXT=" + diemXT + "]";
 	}
-	public KetQuaTrungTuyen() {
-		
-	}
-	
+
 }
